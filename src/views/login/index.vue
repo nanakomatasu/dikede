@@ -5,7 +5,9 @@
       <div class="form">
         <el-input v-model="input" placeholder="请输入内容"></el-input>
         <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
-        <el-input v-model="input" placeholder="请输入内容" class="pic"></el-input>
+        <el-input v-model="input" placeholder="请输入内容" class="pic"></el-input><div class="picm">
+          图片
+        </div>
         <button>登录</button>
       </div>
 </el-card>

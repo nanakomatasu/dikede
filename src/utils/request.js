@@ -15,7 +15,7 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response) => {
-    return response.data.data;
+    return response;
   },
   (err) => {
     if (err.response.status === 401) {

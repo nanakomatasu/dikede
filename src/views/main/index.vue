@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-      <el-scroll>
+      <el-scrollbar>
       <div class="top">
         <div class="left">
           <div class="title">
@@ -29,7 +29,7 @@
           右边
         </el-card>
       </div>
-    </el-scroll>
+    </el-scrollbar>
     </div>
 </template>
 

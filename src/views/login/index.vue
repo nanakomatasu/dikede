@@ -89,7 +89,7 @@ export default {
           this.$cookies.set('token', res.data.token, '3h')
           this.loding = true
           setTimeout(() => {
-            this.$router.push('/home')
+            this.$router.push('/home/main')
           }, 300);
         } else {
           this.$message({

@@ -5,12 +5,12 @@
     <div class="logo">
       <img src="https://likede2-admin.itheima.net/img/logo.3673fab5.png" alt="" width="88" style="position: absolute; top: 10px; left: 20px;" >
     </div>
+     <div></div>
   </div></el-header>
   <el-container>
     <el-aside width="150px">
       <el-col>
     <el-scrollbar style="height: 100%; overflow-x: hidden;">
-
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -76,7 +76,9 @@
   </el-scrollbar>
   </el-col>
     </el-aside>
-    <el-main>Main</el-main>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </el-container>
     </div>
@@ -114,6 +116,12 @@ export default {
 </script>
 
 <style scoped lang="less">
+/deep/.el-main {
+  width: 1219px;
+  padding: 0;
+  margin-top: 60px;
+  margin-left: 150px;
+}
 .el-header {
   height: 60px;
     width: 100%;

@@ -8,7 +8,16 @@
      <div class="userinfo">
       <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
       <p>欢迎您,admin</p>
-      <p>退出<i class="el-icon-arrow-down"></i></p>
+     <div class="logout">
+      <el-dropdown>
+  <span class="el-dropdown-link">
+    退出<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+  <el-dropdown-menu slot="dropdown">
+    <el-dropdown-item @click.native="tologout">退出登录</el-dropdown-item>
+  </el-dropdown-menu>
+</el-dropdown>
+     </div>
      </div>
   </div></el-header>
   <el-container>
@@ -111,7 +120,11 @@ export default {
 
   },
   methods: {
-
+    tologout () {
+      this.$cookies.remove('token')
+      this.$router.push('/login')
+      console.log(111);
+    }
   },
   components: {
 
@@ -144,6 +157,11 @@ export default {
       right: 10px;
       top:8px;
       color: #fff;
+      .el-dropdown-link {
+        color: #fff;
+        margin-left: 15px;
+        cursor: pointer;
+      }
 
       p {
         margin-left: 15px;

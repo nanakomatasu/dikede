@@ -9,7 +9,13 @@ const routes = [
   {
     path: "/home",
     component: () => import("@/views/home"),
-    children: [{ path: "main", component: () => import("@/views/main") }],
+    children: [
+      { path: "main", component: () => import("@/views/main") },
+      {
+        path: "task/business",
+        component: () => import("@/views/task/business"),
+      },
+    ],
   },
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route

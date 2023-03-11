@@ -3,10 +3,10 @@
     <div class="ava"><img src="@/assets/ava.png" alt=""></div>
     <el-card class="box-card">
       <div class="form">
-        <el-input v-model="input" placeholder="请输入内容"></el-input>
+        <el-input v-model="input" placeholder="请输入账号"></el-input>
         <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
         <div class="yanz">
-          <el-input v-model="imgcode" placeholder="请输入内容" class="pic"></el-input>
+          <el-input v-model="imgcode" placeholder="请输入验证码" class="pic"></el-input>
         <div class="picm" @click="() => {
           this.getpic()
         }">
@@ -84,13 +84,13 @@ export default {
             showClose: true,
             message: '登录成功',
             type: 'success',
-            duration: 200
+            duration: 400
           });
           this.$cookies.set('token', res.data.token, '3h')
           this.loding = true
           setTimeout(() => {
             this.$router.push('/home/main')
-          }, 300);
+          }, 800);
         } else {
           this.$message({
             showClose: true,
@@ -98,6 +98,7 @@ export default {
             type: 'error',
             duration: 800
           });
+          this.getpic()
         }console.log(res.data);
       } catch (err) {
         alert(err.data.message)

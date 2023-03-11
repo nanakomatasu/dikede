@@ -1,10 +1,16 @@
 import router from "@/router";
+import VueCookies from "vue-cookies";
 router.beforeEach((to, from, next) => {
-  const token = this.$cookies.get("token");
+  const token = VueCookies.get("token");
+  console.log(token);
   const whitelist = ["/login"];
   if (token) {
-    console.log(from);
-    next();
+    if (to.path === "/login") {
+      next("/");
+      console.log(from);
+    } else {
+      next();
+    }
   } else {
     if (whitelist.includes(to.path)) {
       next();

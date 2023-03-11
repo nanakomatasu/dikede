@@ -5,9 +5,9 @@
     style="width: 100%">
     <el-table-column
       type="index"
-      :index="indexMethod"
       width="80">
     </el-table-column>
+
     <el-table-column
       prop="taskCode"
       label="工单编号"
@@ -89,9 +89,7 @@ export default {
 
   },
   methods: {
-    indexMethod (index) {
-      return index + 1;
-    }
+
   },
   components: {
 

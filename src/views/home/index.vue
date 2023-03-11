@@ -13,7 +13,7 @@
   <span class="el-dropdown-link">
     退出<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
-  <el-dropdown-menu slot="dropdown">
+  <el-dropdown-menu slot="dropdown" >
     <el-dropdown-item @click.native="tologout">退出登录</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
@@ -29,16 +29,20 @@
       class="el-menu-vertical-demo"
       style="height: 710px;">
 
-      <el-menu-item index="1" >
+      <el-menu-item index="1" @click="() => {
+          this.$router.push('/home/main')
+        }">
         <i class="el-icon-s-operation"></i>
         <span slot="title" >帝可得</span>
       </el-menu-item>
-      <el-submenu index="2">
+      <el-submenu index="2" >
         <template slot="title">
           <i class="el-icon-postcard"></i>
           <span>工单管理</span>
         </template>
-        <el-menu-item index="2-1">运营工单</el-menu-item>
+        <el-menu-item index="2-1" @click="() => {
+          this.$router.push('/home/task/business')
+        }">运营工单</el-menu-item>
           <el-menu-item index="2-2" >运维工单</el-menu-item>
         </el-submenu>
         <el-submenu index="3">
@@ -124,7 +128,7 @@ export default {
       this.$cookies.remove('token')
       this.$router.push('/login')
       console.log(111);
-    }
+    },
   },
   components: {
 

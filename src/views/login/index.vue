@@ -29,8 +29,8 @@ export default {
   },
   data () {
     return {
-      input: '',
-      password: '',
+      input: 'admin',
+      password: 'admin',
       value: '',
       imgcode: '',
       id: '',

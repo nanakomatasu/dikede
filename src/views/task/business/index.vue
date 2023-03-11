@@ -69,7 +69,7 @@ export default {
       index: 1,
       total: '',
       totalpage: '',
-      isFlag: false
+      isFlag: true
     };
   },
   computed: {
@@ -108,16 +108,19 @@ export default {
     async tonext () {
       this.index++;
       await this.gettablelist(this.index)
+      this.isFlag = false
     },
     async toback () {
-      if (this.index === 1) {
-        this.isFlag = true
+      if (this.index <= 2) {
+        this.isFlag = true;
+        this.index = 1
+        await this.gettablelist(this.index)
       } else {
-        this.isFlag = false
         this.index--;
         await this.gettablelist(this.index)
       }
-    }
+    },
+
   },
   components: {
     MyTable

@@ -12,7 +12,19 @@
 </el-card>
           </div>
       <el-card class="box-card third">
-          填充Echarts
+        <div class="t-title">
+          <p>销售数据<span>2023.03.01~2023.03.11</span></p>
+          <div class="btnchange">
+            <button>111</button>
+            <button>222</button>
+            <button>333</button>
+          </div>
+        </div>
+        <div class="charts">
+          <LineEcharts/>
+         <BarEcharts/>
+        </div>
+
 </el-card>
         </div>
         <div class="right">
@@ -34,6 +46,8 @@
 </template>
 
 <script>
+import BarEcharts from '@/components/echarts/barecharts.vue'
+import LineEcharts from '@/components/echarts/linecharts.vue'
 export default {
   props: {
 
@@ -59,7 +73,7 @@ export default {
 
   },
   components: {
-
+    BarEcharts, LineEcharts
   },
 };
 </script>
@@ -109,8 +123,30 @@ export default {
         }
 
         .third {
+          position: relative;
           height: 352px;
-        }
+          display: flex;
+          /deep/.el-card__body {
+            padding: 0;
+            width: 1012px;
+            height: 352px;
+             .t-title{
+              display: flex;
+              justify-content: space-between;
+              height: 30px;
+              line-height: 30px;
+              padding: 10px 10px;
+             }
+            .charts {
+              padding: 0;
+              margin-top: 20px;
+              height: 300px;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+         }
 
     }
 

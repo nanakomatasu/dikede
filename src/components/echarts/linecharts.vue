@@ -9,6 +9,17 @@
 <script>
 export default {
   name: 'LineEcharts',
+  props: {
+    xAxis: {
+      type: Array
+    },
+    series: {
+      type: Array
+    }
+  },
+  created () {
+    console.log(this.xAxis);
+  },
   methods: {
     myEcharts () {
       const myChart = this.$echarts.init(document.getElementById('linemain'));

@@ -15,13 +15,13 @@
         <div class="t-title">
           <p>销售数据<span>2023.03.01~2023.03.11</span></p>
           <div class="btnchange">
-            <button>111</button>
-            <button>222</button>
-            <button>333</button>
+            <button @click="getsalelist(1)">按周</button>
+            <button>按月</button>
+            <button>按年</button>
           </div>
         </div>
         <div class="charts">
-          <LineEcharts/>
+          <LineEcharts :xAxis="xAxis" :series="series"/>
          <BarEcharts/>
         </div>
 
@@ -48,13 +48,15 @@
 <script>
 import BarEcharts from '@/components/echarts/barecharts.vue'
 import LineEcharts from '@/components/echarts/linecharts.vue'
+import request from '@/utils/request';
 export default {
   props: {
 
   },
   data () {
     return {
-
+      xAxis: [],
+      series: []
     };
   },
   computed: {
@@ -70,7 +72,16 @@ export default {
 
   },
   methods: {
-
+    async getsalelist (id) {
+      const res = await request({
+        method: 'get',
+        url: `/order-service/report/amountCollect/${id}/2023-03-06/2023-03-11`,
+      })
+      console.log(res.data.xAxis);
+      console.log(res.data.series);
+      this.series = res.data.series;
+      this.xAxis = res.data.xAxis
+    }
   },
   components: {
     BarEcharts, LineEcharts
@@ -136,6 +147,22 @@ export default {
               height: 30px;
               line-height: 30px;
               padding: 10px 10px;
+              p {
+                font-size: 16px;
+                font-weight: 700;
+                span {
+                  margin-left: 10px;
+                  font-size: 12px;
+                  color: #ccc;
+                }
+              }
+
+              button {
+                border: 0;
+                padding: 5px 10px;
+                margin-left: 5px;
+                border-radius: 5px;
+              }
              }
             .charts {
               padding: 0;

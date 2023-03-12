@@ -13,16 +13,15 @@
           </div>
       <el-card class="box-card third">
         <div class="t-title">
-          <p>销售数据<span>2023.03.01~2023.03.11</span></p>
+          <p>销售数据<span>{{text}}</span></p>
           <div class="btnchange">
             <button @click="getsalelist(1)">按周</button>
-            <button>按月</button>
+            <button @click="getsalelist(1, '2023-03-01', '2023-03-11') ">按月</button>
             <button>按年</button>
           </div>
         </div>
         <div class="charts">
-          <LineEcharts :xAxis="xAxis" :series="series"/>
-         <BarEcharts/>
+          <WeekCh />
         </div>
 
 </el-card>
@@ -46,17 +45,14 @@
 </template>
 
 <script>
-import BarEcharts from '@/components/echarts/barecharts.vue'
-import LineEcharts from '@/components/echarts/linecharts.vue'
-import request from '@/utils/request';
+import WeekCh from '@/components/weekcharts/WeekCh';
 export default {
   props: {
 
   },
   data () {
     return {
-      xAxis: [],
-      series: []
+      text: ''
     };
   },
   computed: {
@@ -72,19 +68,10 @@ export default {
 
   },
   methods: {
-    async getsalelist (id) {
-      const res = await request({
-        method: 'get',
-        url: `/order-service/report/amountCollect/${id}/2023-03-06/2023-03-11`,
-      })
-      console.log(res.data.xAxis);
-      console.log(res.data.series);
-      this.series = res.data.series;
-      this.xAxis = res.data.xAxis
-    }
+
   },
   components: {
-    BarEcharts, LineEcharts
+    WeekCh
   },
 };
 </script>

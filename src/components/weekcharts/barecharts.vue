@@ -19,6 +19,11 @@ export default {
         xAxis: {
           data: ['衬衫', '羊毛衫']
         },
+        grid: {
+          left: "3%",
+          right: "4%",
+          containLabel: true,
+        },
         yAxis: {},
         series: [{
           name: '销量',

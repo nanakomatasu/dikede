@@ -2,7 +2,7 @@
 //在Echarts.vue文件中
 <template>
   <div class="LineEcharts">
-    <div ref="linemain" style="width: 520px;height: 320px;"></div>
+    <div ref="linemain" style="width: 500px;height: 320px;" class="linemain"></div>
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
   },
   data () {
     return {
-      series: JSON.parse(localStorage.getItem('mseries')),
-      xAxis: JSON.parse(localStorage.getItem('mxAxis'))
+      series: JSON.parse(localStorage.getItem('yseries')),
+      xAxis: JSON.parse(localStorage.getItem('yxAxis'))
     }
   },
   created () {
@@ -34,7 +34,7 @@ export default {
           type: 'category',
           data: this.xAxis,
           axisLabel: {
-            interval: 1,
+            interval: 0,
             fontSize: 10
           },
           axisTick: {
@@ -77,17 +77,15 @@ export default {
       };
       myChart.setOption(option);
     },
-    async getsalelist (id, start, end) {
+    async getsalelist () {
       const res = await request({
         method: 'get',
-        url: `/order-service/report/amountCollect/${id}/${start}/${end}`,
+        url: `/order-service/report/amountCollect/2/2023-01-01/2023-03-12`,
       })
       // console.log(res.data.xAxis);
       // console.log(res.data.series);
-      localStorage.setItem('mseries', JSON.stringify(res.data.series));
-      localStorage.setItem('mxAxis', JSON.stringify(res.data.xAxis))
-      this.text = '2023.03.06~2023.03.11'
-      this.$forceUpdate()
+      localStorage.setItem('yseries', JSON.stringify(res.data.series));
+      localStorage.setItem('yxAxis', JSON.stringify(res.data.xAxis))
     }
   },
   mounted () {

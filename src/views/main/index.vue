@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="charts">
-          <WeekCh />
+          <YearCh />
         </div>
 
 </el-card>
@@ -45,14 +45,14 @@
 </template>
 
 <script>
-import WeekCh from '@/components/weekcharts/WeekCh';
+import YearCh from '@/components/yearcharts/YearCh.vue';
+
 export default {
   props: {
 
   },
   data () {
     return {
-      text: ''
     };
   },
   computed: {
@@ -71,7 +71,7 @@ export default {
 
   },
   components: {
-    WeekCh
+    YearCh
   },
 };
 </script>

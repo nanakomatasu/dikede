@@ -2,7 +2,7 @@
 //在Echarts.vue文件中
 <template>
   <div class="LineEcharts">
-    <div ref="linemain" style="width: 520px;height: 320px;"></div>
+    <div ref="linemain" style="width: 500px;height: 320px;"></div>
   </div>
 </template>
 

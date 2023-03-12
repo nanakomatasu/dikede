@@ -15,13 +15,19 @@
         <div class="t-title">
           <p>销售数据<span>{{text}}</span></p>
           <div class="btnchange">
-            <button @click="getsalelist(1)">按周</button>
-            <button @click="getsalelist(1, '2023-03-01', '2023-03-11') ">按月</button>
-            <button>按年</button>
+            <button @click="() => {
+              this.showComp='WeekCh',this.text='2023.03.06 ~ 2023.03.12'
+            }">按周</button>
+            <button @click="()=>{
+              this.showComp='MonthCh',this.text='2023.03.01 ~ 2023.03.12'
+            }">按月</button>
+            <button @click="() => {
+              this.showComp='YearCh',this.text='2023.01.01 ~ 2023.03.12'
+            }">按年</button>
           </div>
         </div>
         <div class="charts">
-          <YearCh />
+          <component :is="showComp"/>
         </div>
 
 </el-card>
@@ -46,6 +52,8 @@
 
 <script>
 import YearCh from '@/components/yearcharts/YearCh.vue';
+import WeekCh from '@/components/weekcharts/WeekCh.vue';
+import MonthCh from '@/components/monthcharts/MonthCh.vue';
 
 export default {
   props: {
@@ -53,6 +61,8 @@ export default {
   },
   data () {
     return {
+      showComp: 'WeekCh',
+      text: '2023.03.06 ~ 2023.03.12'
     };
   },
   computed: {
@@ -71,7 +81,7 @@ export default {
 
   },
   components: {
-    YearCh
+    YearCh, WeekCh, MonthCh
   },
 };
 </script>

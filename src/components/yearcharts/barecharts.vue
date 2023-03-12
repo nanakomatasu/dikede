@@ -6,8 +6,19 @@
 </template>
 
 <script>
+import request from '@/utils/request';
 export default {
   name: 'BarEcharts',
+  data () {
+    return {
+      series: JSON.parse(localStorage.getItem('ybxAxis')),
+      xAxis: JSON.parse(localStorage.getItem('ybseries')),
+    }
+  },
+  created () {
+    this.$nextTick(() => {})
+    this.getsalelist()
+  },
   methods: {
     myEcharts () {
       const myChart = this.$echarts.init(document.getElementById('main'));
@@ -17,7 +28,7 @@ export default {
           text: '销售额分布图',
         },
         xAxis: {
-          data: ['衬衫', '羊毛衫']
+          data: this.series,
         },
         grid: {
           left: "3%",
@@ -28,11 +39,20 @@ export default {
         series: [{
           name: '销量',
           type: 'bar',
-          data: [5, 20],
+          data: this.xAxis,
           barWidth: 20,
         }]
       };
       myChart.setOption(option);
+    },
+    async getsalelist () {
+      const res = await request({
+        method: 'get',
+        url: 'order-service/report/regionCollect/2023-01-01/2023-03-12'
+      })
+      console.log(res.data);
+      localStorage.setItem('ybxAxis', JSON.stringify(res.data.xAxis))
+      localStorage.setItem('ybseries', JSON.stringify(res.data.series))
     }
   },
   mounted () {

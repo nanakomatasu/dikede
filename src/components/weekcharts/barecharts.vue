@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import request from '@/utils/request';
+import { barApi } from '@/api/echarts'
 export default {
   name: 'BarEcharts',
   data () {
@@ -16,8 +16,7 @@ export default {
     }
   },
   created () {
-    this.$nextTick(() => {})
-    this.getsalelist()
+    this.$nextTick(() => { this.getsalelist('2023-03-06', '2023-03-12') })
   },
   methods: {
     myEcharts () {
@@ -49,11 +48,8 @@ export default {
       };
       myChart.setOption(option);
     },
-    async getsalelist () {
-      const res = await request({
-        method: 'get',
-        url: 'order-service/report/regionCollect/2023-03-06/2023-03-12'
-      })
+    async getsalelist (start, end) {
+      const res = await barApi(start, end)
       console.log(res.data);
       localStorage.setItem('wbxAxis', JSON.stringify(res.data.xAxis))
       localStorage.setItem('wbseries', JSON.stringify(res.data.series))

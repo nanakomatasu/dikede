@@ -43,7 +43,7 @@
 
 <script>
 import MyTable from '@/views/task/business/table/mytable.vue';
-import request from '@/utils/request';
+import { businessApi } from '@/api/tablelist';
 export default {
   props: {
 
@@ -87,15 +87,7 @@ export default {
   methods: {
     async gettablelist (i) {
       try {
-        const res = await request({
-          method: 'get',
-          url: '/task-service/task/search',
-          params: {
-            pageIndex: i,
-            pageSize: 10
-          }
-
-        })
+        const res = await businessApi(i)
         console.log(res.data.totalPage);
         this.totalpage = res.data.totalPage
         this.total = res.data.totalCount

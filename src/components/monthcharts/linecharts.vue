@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import request from '@/utils/request';
+import { lineApi } from '@/api/echarts'
 export default {
   name: 'LineEcharts',
   props: {
@@ -82,15 +82,11 @@ export default {
       myChart.setOption(option);
     },
     async getsalelist (id, start, end) {
-      const res = await request({
-        method: 'get',
-        url: `/order-service/report/amountCollect/${id}/${start}/${end}`,
-      })
+      const res = await lineApi(id, start, end)
       // console.log(res.data.xAxis);
       // console.log(res.data.series);
       localStorage.setItem('mseries', JSON.stringify(res.data.series));
       localStorage.setItem('mxAxis', JSON.stringify(res.data.xAxis))
-      this.text = '2023.03.06~2023.03.11'
       this.$forceUpdate()
     }
   },

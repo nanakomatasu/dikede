@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import request from '@/utils/request';
+import { lineApi } from '@/api/echarts'
 export default {
   name: 'LineEcharts',
   props: {
@@ -19,7 +19,7 @@ export default {
     }
   },
   created () {
-    this.$nextTick(() => { this.getsalelist(1, '2023-03-01', '2023-03-11') })
+    this.$nextTick(() => { this.getsalelist(2, '2023-01-01', '2023-03-11') })
   },
   methods: {
     myEcharts () {
@@ -81,11 +81,8 @@ export default {
       };
       myChart.setOption(option);
     },
-    async getsalelist () {
-      const res = await request({
-        method: 'get',
-        url: `/order-service/report/amountCollect/2/2023-01-01/2023-03-12`,
-      })
+    async getsalelist (id, start, end) {
+      const res = await lineApi(id, start, end)
       // console.log(res.data.xAxis);
       // console.log(res.data.series);
       localStorage.setItem('yseries', JSON.stringify(res.data.series));

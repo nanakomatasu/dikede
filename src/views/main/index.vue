@@ -5,9 +5,15 @@
         <div class="left">
           <div class="title">
             <el-card class="box-card first">
+              <div class="f-title">工单统计<span>
+2023.03.01 ~ 2023.03.13</span></div>
+              <StatsTotal />
           <img src="https://likede2-admin.itheima.net/img/task.66b715b7.png" alt="">
 </el-card>
 <el-card class="box-card second">
+  <div class="f-title">销售统计<span>
+2023.03.01 ~ 2023.03.13</span></div>
+<OrderTotal />
 <img src="https://likede2-admin.itheima.net/img/sale.606b0d8c.png" alt="">
 </el-card>
           </div>
@@ -70,6 +76,8 @@ import YearCh from '@/components/yearcharts/YearCh.vue';
 import WeekCh from '@/components/weekcharts/WeekCh.vue';
 import MonthCh from '@/components/monthcharts/MonthCh.vue';
 import CustCharts from '@/components/CustCharts/CustCharts.vue'
+import StatsTotal from '@/components/stats.vue';
+import OrderTotal from '@/components/order.vue'
 export default {
   props: {
 
@@ -96,7 +104,7 @@ export default {
 
   },
   components: {
-    YearCh, WeekCh, MonthCh, CustCharts
+    YearCh, WeekCh, MonthCh, CustCharts, StatsTotal, OrderTotal
   },
 };
 </script>
@@ -125,6 +133,22 @@ export default {
             height: 100%;
         width: 528px;
         background-color: #e9f3ff;
+        .f-title{
+              height: 20px;
+              line-height: 20px;
+              text-align: left;
+              margin-bottom: 10px;
+              font-weight: 700;
+              p {
+                font-size: 16px;
+
+              }
+              span {
+                  margin-left: 10px;
+                  font-size: 12px;
+                  color: #ccc;
+                }
+        }
         img {
           position: absolute;
           bottom: 0;
@@ -137,6 +161,22 @@ export default {
         height: 100%;
        width: 443px;
        background-color: #fbefe8;
+       .f-title{
+              height: 20px;
+              line-height: 20px;
+              text-align: left;
+              margin-bottom: 10px;
+              font-weight: 700;
+              p {
+                font-size: 16px;
+
+              }
+              span {
+                  margin-left: 10px;
+                  font-size: 12px;
+                  color: #ccc;
+                }
+        }
        img {
         position: absolute;
         right: 0;

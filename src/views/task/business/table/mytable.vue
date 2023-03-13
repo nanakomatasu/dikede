@@ -48,9 +48,12 @@
       width="150">
     </el-table-column>
     <el-table-column
-      prop="createTime"
       label="创建日期"
       width="200">
+      <template slot-scope="scope">
+        {{ scope.row.createTime.replace(/T/g, ' ')}}
+
+      </template>
     </el-table-column>
     <el-table-column
       fixed="right"

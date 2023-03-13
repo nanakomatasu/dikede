@@ -23,6 +23,7 @@
 
 <script>
 import request from '@/utils/request';
+import { loginApi } from '@/api/user';
 export default {
   props: {
 
@@ -63,22 +64,9 @@ export default {
       this.src = window.URL.createObjectURL(res.data);
       console.log(this.src);
     },
-    getnum () {
-      this.id = Math.random() * 10
-    },
     async onlogin () {
       try {
-        const res = await request({
-          method: 'post',
-          url: 'user-service/user/login',
-          data: {
-            loginName: this.input,
-            password: this.password,
-            code: this.imgcode,
-            clientToken: 1,
-            loginType: '0'
-          }
-        })
+        const res = await loginApi(this.input, this.password, this.imgcode)
         if (res.data.success) {
           this.$message({
             showClose: true,
@@ -89,7 +77,7 @@ export default {
           this.$cookies.set('token', res.data.token, '3h')
           this.loding = true
           setTimeout(() => {
-            this.$router.push('/home/main')
+            this.$router.push('/')
           }, 800);
         } else {
           this.$message({

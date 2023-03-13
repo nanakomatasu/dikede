@@ -30,7 +30,7 @@
       style="height: 710px;">
 
       <el-menu-item index="1" @click="() => {
-          this.$router.push('/home/main')
+          this.$router.push('/')
         }">
         <i class="el-icon-s-operation"></i>
         <span slot="title" >帝可得</span>
@@ -41,9 +41,11 @@
           <span>工单管理</span>
         </template>
         <el-menu-item index="2-1" @click="() => {
-          this.$router.push('/home/task/business')
+          this.$router.push('/task/business')
         }">运营工单</el-menu-item>
-          <el-menu-item index="2-2" >运维工单</el-menu-item>
+          <el-menu-item index="2-2" @click="() => {
+            this.$router.push('/task/operation')
+          }">运维工单</el-menu-item>
         </el-submenu>
         <el-submenu index="3">
         <template slot="title">
@@ -94,7 +96,10 @@
   </el-col>
     </el-aside>
     <el-main>
-      <router-view></router-view>
+      <transition name="scale" mode="out-in">
+   <router-view></router-view>
+</transition>
+
     </el-main>
   </el-container>
 </el-container>
@@ -203,6 +208,18 @@ export default {
 .el-submenu .is-active {
   background-color: transparent;
     color: #5f84ff;
+}
+// 滑动
+// 滑动
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.5s ease;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 </style>

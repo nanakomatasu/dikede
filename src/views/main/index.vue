@@ -58,6 +58,7 @@
            异常数据监控
          </div>
          <img src="https://likede2-admin.itheima.net/img/empty.87c4f71b.png" alt="">
+         <p>暂无异常</p>
         </el-card>
       </div>
     </el-scrollbar>
@@ -260,6 +261,12 @@ export default {
 
       img {
          margin-top: 100px;
+      }
+
+      p {
+        margin-left: 20px;
+        margin-top: 20px;
+        font-weight: 700;
       }
        }
 

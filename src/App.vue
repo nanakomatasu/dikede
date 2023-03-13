@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view/>
+<router-view></router-view>
+
   </div>
 </template>
 
@@ -31,4 +32,16 @@ nav {
     }
   }
 }
+
+// 滑动
+// 淡出淡入
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </style>

@@ -40,7 +40,7 @@
         </div>
         <div class="right">
           <el-card class="ranking">
-            榜单
+            <MyRanking />
           </el-card>
         </div>
       </div>
@@ -77,7 +77,8 @@ import WeekCh from '@/components/weekcharts/WeekCh.vue';
 import MonthCh from '@/components/monthcharts/MonthCh.vue';
 import CustCharts from '@/components/CustCharts/CustCharts.vue'
 import StatsTotal from '@/components/stats.vue';
-import OrderTotal from '@/components/order.vue'
+import OrderTotal from '@/components/order.vue';
+import MyRanking from '../../components/MyRanking.vue'
 export default {
   props: {
 
@@ -104,7 +105,7 @@ export default {
 
   },
   components: {
-    YearCh, WeekCh, MonthCh, CustCharts, StatsTotal, OrderTotal
+    YearCh, WeekCh, MonthCh, CustCharts, StatsTotal, OrderTotal, MyRanking
   },
 };
 </script>

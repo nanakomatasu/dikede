@@ -1,7 +1,7 @@
 <template>
     <div class="main">
        <div class="tcount count"><p>{{ all }}</p>工单总数（个）</div>
-       <div class="scount count"><p>0</p>完成工单（个）</div>
+       <div class="scount count"><p>{{ complete }}</p>完成工单（个）</div>
        <div class="qcount count"><p>0</p>进行工单（个）</div>
        <div class="qcount count"><p>{{ cancel }}</p>取消工单（个）</div>
     </div>
@@ -17,7 +17,8 @@ export default {
   data () {
     return {
       all: '',
-      cancel: ''
+      cancel: '',
+      complete: ''
     };
   },
   computed: {
@@ -35,11 +36,15 @@ export default {
   methods: {
     async getnum () {
       const res = await statsApi()
+      console.log(res.data);
       this.all = res.data.reduce((total, item) => {
         return total + item.total
       }, 0)
       this.cancel = res.data.reduce((total, item) => {
         return total + item.cancelTotal
+      }, 0)
+      this.complete = res.data.reduce((total, item) => {
+        return total + item.completedTotal
       }, 0)
     }
 

@@ -1,12 +1,12 @@
 <template>
   <div class="main">
-     <div class="tcount count"><p>6159</p>订单量（个）</div>
-     <div class="qcount count"><p>4.17</p>销售额（万元）</div>
+     <div class="tcount count"><p>{{ count }}</p>订单量（个）</div>
+     <div class="qcount count"><p>{{ amount }}</p>销售额（万元）</div>
   </div>
 </template>
 
 <script>
-import { statsApi } from '@/api/total';
+import { orderCountApi, orderAmountApi } from '@/api/total';
 export default {
   name: 'OrderTotal',
   props: {
@@ -14,13 +14,17 @@ export default {
   },
   data () {
     return {
+      count: '',
+      amount: ''
     };
   },
   computed: {
 
   },
   created () {
-    this.$nextTick(this.getnum)
+    this.$nextTick(() => {
+      Promise.all([this.getcount(), this.getamount()])
+    })
   },
   mounted () {
 
@@ -29,11 +33,15 @@ export default {
 
   },
   methods: {
-    async getnum () {
-      const res = await statsApi()
-      console.log(res.data);
+    async getcount () {
+      const res = await orderCountApi()
+      this.count = res.data
+      // console.log(res.data);
+    },
+    async getamount () {
+      const res = await orderAmountApi()
+      this.amount = (res.data / 1000000).toFixed(2);
     }
-
   },
   components: {
 

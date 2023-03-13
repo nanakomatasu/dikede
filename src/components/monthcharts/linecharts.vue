@@ -29,6 +29,10 @@ export default {
         title: {
           text: '销售额趋势图',
         },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b} : {c}元'
+        },
         color: ['#ff5757'],
         xAxis: {
           type: 'category',

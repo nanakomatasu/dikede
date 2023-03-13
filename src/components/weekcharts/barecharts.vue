@@ -27,6 +27,10 @@ export default {
         title: {
           text: '销售额分布图',
         },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b} : {c}元'
+        },
         xAxis: {
           data: this.series,
         },

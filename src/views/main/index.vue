@@ -40,10 +40,24 @@
       </div>
       <div class="footer">
         <el-card class="f-left">
-          左边
+          <div class="fl-title">
+            合作商点位数TOP5
+          </div>
+          <CustCharts />
+             <el-card class="total">
+              <p>16
+                <span>点位数</span>
+              </p>
+              <p>5
+                <span>合作商数</span>
+              </p>
+             </el-card>
         </el-card>
         <el-card class="f-right">
-          右边
+         <div class="fr-title">
+           异常数据监控
+         </div>
+         <img src="https://likede2-admin.itheima.net/img/empty.87c4f71b.png" alt="">
         </el-card>
       </div>
     </el-scrollbar>
@@ -54,7 +68,7 @@
 import YearCh from '@/components/yearcharts/YearCh.vue';
 import WeekCh from '@/components/weekcharts/WeekCh.vue';
 import MonthCh from '@/components/monthcharts/MonthCh.vue';
-
+import CustCharts from '@/components/CustCharts/CustCharts.vue'
 export default {
   props: {
 
@@ -81,7 +95,7 @@ export default {
 
   },
   components: {
-    YearCh, WeekCh, MonthCh
+    YearCh, WeekCh, MonthCh, CustCharts
   },
 };
 </script>
@@ -192,11 +206,63 @@ export default {
     .f-left {
       width: 767px;
       height: 353px;
+      position: relative;
+      .el-card__body {
+
+        width:  767px;
+        height: 353px;
+
+        .fl-title {
+          font-weight: 700;
+          text-align: left;
+          padding: 0;
+        }
+
+        .total {
+          box-sizing: border-box;
+          width: 188px;
+          height: 230px;
+          background-color: #f8f8f9;
+          border-radius: 0 30px 0 30px;
+          position: absolute;
+          right: 50px;
+          bottom: 50px;
+          padding: 30px 0 0 30px;
+          p {
+            text-align: left;
+            font-size: 25px;
+            font-weight: 700;
+            display: flex;
+            color: #072074;
+            flex-direction: column;
+            margin-bottom: 20px;
+            span {
+              font-weight: 400;
+              font-size: 10px;
+              color: #333;
+             margin-top: 5px;
+            }
+          }
+        }
+      }
     }
 
     .f-right {
       width: 542px;
       height: 353px;
+       .el-card__body{
+        width: 542px;
+        height: 353px;
+        .fr-title {
+         text-align: left;
+         font-weight: 700;
+      }
+
+      img {
+         margin-top: 100px;
+      }
+       }
+
     }
   }
 

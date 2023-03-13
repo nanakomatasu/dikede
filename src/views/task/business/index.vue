@@ -76,7 +76,7 @@ export default {
 
   },
   created () {
-    this.$nextTick(this.gettablelist(1))
+    this.$nextTick(() => { this.gettablelist(1) })
   },
   mounted () {
 
@@ -88,11 +88,9 @@ export default {
     async gettablelist (i) {
       try {
         const res = await businessApi(i)
-        console.log(res.data.totalPage);
         this.totalpage = res.data.totalPage
         this.total = res.data.totalCount
         this.tableData = res.data.currentPageRecords
-        console.log(this.tableData);
       } catch (err) {
         console.log(err);
       }

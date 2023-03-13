@@ -56,7 +56,6 @@ export default {
         method: 'get',
         url: '/vm-service/node/nodeCollect'
       })
-      console.log(res.data);
       localStorage.setItem('flist', JSON.stringify(res.data))
     }
   },

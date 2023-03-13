@@ -51,7 +51,6 @@ export default {
     },
     async getsalelist (start, end) {
       const res = await barApi(start, end)
-      console.log(res.data);
       localStorage.setItem('ybxAxis', JSON.stringify(res.data.xAxis))
       localStorage.setItem('ybseries', JSON.stringify(res.data.series))
       this.$forceUpdate()

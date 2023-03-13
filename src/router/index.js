@@ -5,6 +5,7 @@ import main from "./modules/main";
 import task from "./modules/task";
 Vue.use(VueRouter);
 const constantroutes = [
+  { path: "*", component: () => import("@/views/404") },
   { path: "/login", component: () => import("@/views/login") },
 
   // route level code-splitting

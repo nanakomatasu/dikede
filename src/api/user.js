@@ -1,7 +1,7 @@
 import request from "@/utils/request";
 
-export const loginApi = (input, password, imgcode) =>
-  request({
+export const loginApi = (input, password, imgcode) => {
+  return request({
     method: "post",
     url: "user-service/user/login",
     data: {
@@ -12,9 +12,10 @@ export const loginApi = (input, password, imgcode) =>
       loginType: "0",
     },
   });
+};
 
 export const imgcodeApi = () => {
-  request({
+  return request({
     method: "get",
     url: `user-service/user/imageCode/1`,
     responseType: "blob",

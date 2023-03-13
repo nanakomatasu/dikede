@@ -58,6 +58,7 @@ export default {
       console.log(res.data);
       localStorage.setItem('ybxAxis', JSON.stringify(res.data.xAxis))
       localStorage.setItem('ybseries', JSON.stringify(res.data.series))
+      this.$forceUpdate()
     }
   },
   mounted () {

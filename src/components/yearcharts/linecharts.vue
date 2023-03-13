@@ -90,6 +90,7 @@ export default {
       // console.log(res.data.series);
       localStorage.setItem('yseries', JSON.stringify(res.data.series));
       localStorage.setItem('yxAxis', JSON.stringify(res.data.xAxis))
+      this.$forceUpdate()
     }
   },
   mounted () {

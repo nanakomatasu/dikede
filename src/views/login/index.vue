@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import request from '@/utils/request';
-import { loginApi } from '@/api/user';
+import { loginApi, imgcodeApi } from '@/api/user';
 export default {
   props: {
 
@@ -53,11 +52,7 @@ export default {
   },
   methods: {
     async getpic () {
-      const res = await request({
-        method: "get",
-        url: `user-service/user/imageCode/1`,
-        responseType: 'blob'
-      })
+      const res = await imgcodeApi()
 
       // this.imgcode = `data: image/jpeg;base64,${btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`
       console.log(res);

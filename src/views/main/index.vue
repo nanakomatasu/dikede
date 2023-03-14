@@ -40,6 +40,8 @@
         </div>
         <div class="right">
           <el-card class="ranking">
+            <div class="r-title">销售统计<span>
+2023.03.01 ~ 2023.03.13</span></div>
             <MyRanking />
           </el-card>
         </div>
@@ -231,7 +233,22 @@ export default {
     }
 
     .right {
+      .r-title{
+              height: 20px;
+              line-height: 20px;
+              text-align: left;
+              margin-bottom: 20px;
+              font-weight: 700;
+              p {
+                font-size: 16px;
 
+              }
+              span {
+                  margin-left: 10px;
+                  font-size: 12px;
+                  color: #ccc;
+                }
+        }
       .ranking {
         width: 317px;
       height: 538px;

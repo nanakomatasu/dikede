@@ -86,7 +86,7 @@ export default {
       } catch (err) {
         alert(err.data.message)
       }
-    }
+    },
 
   },
   components: {

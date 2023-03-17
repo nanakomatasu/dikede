@@ -7,6 +7,7 @@ import "element-ui/lib/theme-chalk/index.css";
 import VueCookies from "vue-cookies";
 import "../permission";
 import * as echarts from "echarts";
+import "./components/index";
 
 Vue.prototype.$echarts = echarts;
 

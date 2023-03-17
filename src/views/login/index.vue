@@ -13,7 +13,6 @@
           <img :src="src" alt="" class="codeimg">
         </div>
         </div>
-
         <el-button @click="onlogin" :loading="loding">登录</el-button>
       </div>
 </el-card>

@@ -1,12 +1,13 @@
 <template>
   <div class="main">
-     <div class="tcount count"><p>{{ count }}</p>订单量（个）</div>
+     <div class="tcount count"><p>{{ count }}{{ info.username }}</p>订单量（个）</div>
      <div class="qcount count"><p>{{ amount }}</p>销售额（万元）</div>
   </div>
 </template>
 
 <script>
 import { orderCountApi, orderAmountApi } from '@/api/total';
+import { mapState } from 'vuex';
 export default {
   name: 'OrderTotal',
   props: {
@@ -19,7 +20,12 @@ export default {
     };
   },
   computed: {
+    ...mapState('user', ['info']),
 
+    // ...mapState({
+    //   // 取值只有一种
+    //   user: (state) => state.info.username,
+    // }),
   },
   created () {
     this.$nextTick(() => {

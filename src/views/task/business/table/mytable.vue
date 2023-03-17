@@ -60,7 +60,7 @@
       label="操作"
       width="80">
       <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看详情</el-button>
+        <el-button @click="handleClick(scope.row.innerCode)" type="text" size="small">查看详情</el-button>
       </template>
     </el-table-column>
   </el-table>

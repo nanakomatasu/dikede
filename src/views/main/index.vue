@@ -23,6 +23,7 @@
           <div class="btnchange">
             <button @click="() => {
               this.showComp='WeekCh',this.text='2023.03.06 ~ 2023.03.12'
+              // this.$store.dispatch('lineecharts/axioslist', {1, '2023-03-06', '2023-03-11'})
             }">按周</button>
             <button @click="()=>{
               this.showComp='MonthCh',this.text='2023.03.01 ~ 2023.03.12'
@@ -80,7 +81,7 @@ import MonthCh from '@/components/monthcharts/MonthCh.vue';
 import CustCharts from '@/components/CustCharts/CustCharts.vue'
 import StatsTotal from '@/components/stats.vue';
 import OrderTotal from '@/components/order.vue';
-import MyRanking from '../../components/MyRanking.vue'
+import MyRanking from '../../components/MyRanking.vue';
 export default {
   props: {
 
@@ -95,7 +96,6 @@ export default {
 
   },
   created () {
-
   },
   mounted () {
 
@@ -104,7 +104,6 @@ export default {
 
   },
   methods: {
-
   },
   components: {
     YearCh, WeekCh, MonthCh, CustCharts, StatsTotal, OrderTotal, MyRanking

@@ -3,5 +3,5 @@ export default {
   path: "/",
   component: home,
   redirect: "/home",
-  children: [{ path: "", component: () => import("@/views/main") }],
+  children: [{ path: "/", component: () => import("@/views/main") }],
 };

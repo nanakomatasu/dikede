@@ -22,27 +22,26 @@
   <el-button type="primary" icon="el-icon-search">查询</el-button>
         </div>
        </el-card>
-       <el-card class="footer">
-        <div class="title">
+       <MyTable :tableData="tableData" :totalpage="totalpage" :total="total" :index="index">
+        <template #title>
+          <div class="title">
           <el-button class="first" icon="el-icon-circle-plus-outline">新建</el-button>
           <el-button class="second">工单配置</el-button>
         </div>
-        <div class="main">
-          <MyTable :tableData="tableData"/>
-          <div class="m-footer">
+        </template>
+      </MyTable>
+      <div class="m-footer">
            <p style="color:#dbdfe5!important;">共{{ total }}条记录&nbsp;&nbsp;当前{{ index }}/{{ totalpage }}页</p>
            <div class="changepage">
             <el-button type="primary" icon="el-icon-arrow-left" :disabled=isFlag @click="toback(index)">上一页</el-button>
   <el-button type="primary" @click="tonext(index)">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
            </div>
           </div>
-        </div>
-       </el-card>
     </div>
 </template>
 
 <script>
-import MyTable from '@/views/task/business/table/mytable.vue';
+import MyTable from '@/components/mytable.vue';
 import { businessApi } from '@/api/tablelist';
 export default {
   props: {
@@ -146,11 +145,10 @@ export default {
   }
   }
 }
-
-.footer {
-  margin-top: 20px;
-  .title {
+}
+.title {
        text-align: left;
+       margin-bottom: 20px;
 
        .first {
         background: linear-gradient(135deg,#ff9743,#ff5e20)!important;
@@ -164,7 +162,6 @@ export default {
        }
   }
 
-  .main {
     .m-footer {
       margin-top: 20px;
       display: flex;
@@ -175,8 +172,5 @@ export default {
         margin-left: 15px;
       }
     }
-  }
-}
-}
 
 </style>

@@ -22,9 +22,7 @@ export default {
 
   },
   created () {
-    this.$nextTick(() => {
-      Promise.all([this.getcount(), this.getamount()])
-    })
+    Promise.all([this.getcount(), this.getamount()])
   },
   mounted () {
 

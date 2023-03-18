@@ -13,3 +13,10 @@ export const barApi = (bstart, bend) => {
     url: `order-service/report/regionCollect/${bstart}/${bend}`,
   });
 };
+
+export const custApi = () => {
+  return request({
+    method: "get",
+    url: "/vm-service/node/nodeCollect",
+  });
+};

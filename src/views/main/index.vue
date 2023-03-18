@@ -46,12 +46,12 @@
           <div class="fl-title">
             合作商点位数TOP5
           </div>
-          <CustEcharts/>
+          <CustEcharts :friendlist="friendlist"/>
              <el-card class="total">
-              <p>16
+              <p>{{ sum }}
                 <span>点位数</span>
               </p>
-              <p>5
+              <p>{{ friendtotal }}
                 <span>合作商数</span>
               </p>
              </el-card>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { barApi, lineApi } from '@/api/echarts';
+import { barApi, lineApi, custApi } from '@/api/echarts';
 export default {
   data () {
     return {
@@ -78,14 +78,17 @@ export default {
       linexAxis: [],
       barseries: [],
       barxAxis: [],
-      label: '周'
+      friendlist: [],
+      label: '周',
+      friendtotal: 0,
+      sum: 0
     };
   },
   computed: {
 
   },
   created () {
-    Promise.all([this.getlinelist(1, '2023-03-06', '2023-03-11'), this.getbarlist('2023-03-06', '2023-03-11')])
+    Promise.all([this.getlinelist(1, '2023-03-06', '2023-03-11'), this.getbarlist('2023-03-06', '2023-03-11'), this.getfriend()])
   },
   mounted () {
 
@@ -97,22 +100,31 @@ export default {
     async getbarlist (start, end) {
       const res = await barApi(start, end)
       this.barseries = res.data.series.map(item => {
-        return item / 1000
+        return (item / 10000).toFixed(2)
       })
       this.barxAxis = res.data.xAxis
     },
     async getlinelist (id, start, end) {
       const res = await lineApi(id, start, end)
       this.lineseries = res.data.series.map(item => {
-        return item / 1000
+        return (item / 10000).toFixed(2)
       })
       this.linexAxis = res.data.xAxis
+    },
+    async getfriend () {
+      const res = await custApi();
+      this.friendlist = res.data
+      this.friendtotal = this.friendlist.length
+      this.sum = res.data.reduce((currentValue, item) => +item.value + currentValue,
+        0)
+      console.log(this.sum);
     },
     getGroup (id, start, end, date) {
       Promise.all([this.getbarlist(start, end), this.getlinelist(id, start, end)])
       this.text = `${start} ~ ${end}`
       this.label = date
-    }
+    },
+
   },
   components: {
   },

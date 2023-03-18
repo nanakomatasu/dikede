@@ -29,7 +29,6 @@ export default {
     }
   },
   created () {
-    this.$nextTick(this.$forceUpdate())
   },
   methods: {
     myEcharts () {
@@ -42,7 +41,7 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-          formatter: '{b} : {c}元'
+          formatter: '{b} : {c}万元'
         },
         color: ['#ff5757'],
         xAxis: {
@@ -62,7 +61,9 @@ export default {
           containLabel: true,
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisLabel: { formatter: '{value} 万元' },
+
         },
         series: [
           {

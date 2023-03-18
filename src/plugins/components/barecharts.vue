@@ -25,7 +25,6 @@ export default {
     }
   },
   created () {
-    this.$nextTick(this.$forceUpdate())
   },
   methods: {
     myEcharts () {
@@ -37,7 +36,7 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-          formatter: '{b} : {c}元'
+          formatter: '{b} : {c}万元'
         },
         xAxis: {
           data: this.barxAxis,
@@ -47,7 +46,10 @@ export default {
           right: "4%",
           containLabel: true,
         },
-        yAxis: {},
+        yAxis: {
+          type: 'value',
+          axisLabel: { formatter: '{value} 万元' },
+        },
         series: [{
           name: '销量',
           type: 'bar',

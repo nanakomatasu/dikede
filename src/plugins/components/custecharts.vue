@@ -7,22 +7,19 @@
 </template>
 
 <script>
-import request from '@/utils/request';
 
 export default {
   name: 'CustEcharts',
   props: {
+    friendlist: {
+      type: []
+    }
   },
   data () {
     return {
-      friendlist: JSON.parse(localStorage.getItem('flist')),
-      num: ''
     }
   },
   created () {
-    this.$nextTick(() => {
-      this.getfriend()
-    })
   },
   methods: {
     myEcharts () {
@@ -52,18 +49,15 @@ export default {
       };
       myChart.setOption(option);
     },
-    async getfriend () {
-      const res = await request({
-        method: 'get',
-        url: '/vm-service/node/nodeCollect'
-      })
-      localStorage.setItem('flist', JSON.stringify(res.data))
-      this.num = res.data.length
-    }
   },
   mounted () {
     this.myEcharts();
   },
+  watch: {
+    friendlist () {
+      this.myEcharts()
+    }
+  }
 
 }
 </script>

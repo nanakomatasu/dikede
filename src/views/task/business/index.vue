@@ -22,7 +22,7 @@
   <el-button type="primary" icon="el-icon-search">查询</el-button>
         </div>
        </el-card>
-       <MyTable :tableData="tableData" :totalpage="totalpage" :total="total" :index="index">
+       <MyTable :tableData="tableData" :totalpage="totalpage" :total="total" :index="index" :data="data">
         <template #title>
           <div class="title">
           <el-button class="first" icon="el-icon-circle-plus-outline">新建</el-button>
@@ -51,16 +51,16 @@ export default {
     return {
       input: '',
       options: [{
-        value: '选项1',
+        value: '1',
         label: '待办'
       }, {
-        value: '选项2',
+        value: '2',
         label: '取消'
       }, {
-        value: '选项3',
+        value: '3',
         label: '进行'
       }, {
-        value: '选项4',
+        value: '4',
         label: '完成'
       }],
       value: '',
@@ -68,7 +68,17 @@ export default {
       index: 1,
       total: '',
       totalpage: '',
-      isFlag: true
+      isFlag: true,
+      data: [
+        { prop: 'taskCode', label: '工单编号', width: '200' },
+        { prop: 'innerCode', label: '设备编号', width: '200' },
+        { prop: 'taskType', label: '工单类型', method: (i) => { return i ? i.typeName : '暂无' }, width: '100' },
+        { prop: 'createType', label: '工单方式', method: (i) => { return i === 0 ? '自动' : '手动' }, width: '150' },
+        { prop: 'taskStatusTypeEntity', label: '工单状态', method: (i) => { return i ? i.statusName : '暂无' }, width: '70' },
+        { prop: 'userName', label: '运营人员', width: '70' },
+        { prop: 'createTime', label: '创建日期', width: '150', method: (i) => { return i ? i.replace('T', ' ') : '' } },
+        { label: '操作', target: '查看详情', target1: '修改', target2: '删除' }
+      ]
     };
   },
   computed: {

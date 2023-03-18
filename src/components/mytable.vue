@@ -7,64 +7,20 @@
     :data="tableData"
     border
     style="width: 100%">
-    <el-table-column label="序号" width="70" align="left" :index="index*10-9" type="index">
-        </el-table-column>
+    <el-table-column label="序号" width="70" align="left" :index="index*10-9" type="index"></el-table-column>
+   <el-table-column
+      v-for="item in data"
+      :prop="item.prop"
+      :label="item.label"
+      :key="item.innerCode">
+      <template slot-scope="scope">
+       {{ item.method ? item.method(scope.row[item.prop]): scope.row[item.prop]}}
+       <el-button @click="handleClick(scope.row)" type="text" size="small" v-show="item.target === '查看详情'? true : false">查看详情</el-button>
+       <el-button @click="handleClick(scope.row)" type="text" size="small" v-show="item.target1 === '修改'? true : false">修改</el-button>
+       <el-button @click="handleClick(scope.row)" type="text" size="small" v-show="item.target2 === '删除'? true : false"  class="remove">删除</el-button>
+      </template>
+    </el-table-column>
 
-    <el-table-column
-      prop="taskCode"
-      label="工单编号"
-      width="200">
-    </el-table-column>
-    <el-table-column
-      prop="innerCode"
-      label="设备编号"
-      width="200">
-    </el-table-column>
-    <el-table-column
-    prop="taskType.typeName"
-      label="工单类型"
-      width="120">
-
-    </el-table-column>
-    <el-table-column
-      label="工单方式"
-      width="120">
-      <template slot-scope="scope">
-        {{ scope.row.createType ==1?'手动':'自动' }}
-      </template>
-    </el-table-column>
-    <el-table-column
-      prop="zip"
-      label="工单状态"
-      width="120">
-      <template slot-scope="scope">
-        {{ scope.row.taskStatus ==1?'待办':'' }}
-        {{ scope.row.taskStatus ==2?'进行':'' }}
-        {{ scope.row.taskStatus ==3?'取消':'' }}
-        {{ scope.row.taskStatus ==4?'完成':'' }}
-      </template>
-    </el-table-column>
-    <el-table-column
-      prop="userName"
-      label="运营人员"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      label="创建日期"
-      width="200">
-      <template slot-scope="scope">
-        {{ scope.row.createTime.replace(/T/g, ' ')}}
-
-      </template>
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="80">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看详情</el-button>
-      </template>
-    </el-table-column>
   </el-table>
        </el-card>
 </template>
@@ -74,6 +30,9 @@ export default {
   name: 'MyTable',
   props: {
     tableData: {
+      type: Array
+    },
+    data: {
       type: Array
     },
     totalpage: {
@@ -129,8 +88,12 @@ export default {
 
       button {
         margin-left: 15px;
+
       }
     }
   }
 }
+/deep/.remove {
+          color:#ff5a5a ;
+        }
 </style>

@@ -10,12 +10,13 @@
 import request from '@/utils/request';
 
 export default {
-  name: 'LineEcharts',
+  name: 'CustEcharts',
   props: {
   },
   data () {
     return {
-      friendlist: JSON.parse(localStorage.getItem('flist'))
+      friendlist: JSON.parse(localStorage.getItem('flist')),
+      num: ''
     }
   },
   created () {
@@ -57,6 +58,7 @@ export default {
         url: '/vm-service/node/nodeCollect'
       })
       localStorage.setItem('flist', JSON.stringify(res.data))
+      this.num = res.data.length
     }
   },
   mounted () {

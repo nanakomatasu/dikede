@@ -1,9 +1,9 @@
 <template>
     <div>
      <ul >
-      <li><span class="top1">{{ +ranklist[0].skuId+1 }}</span><p>{{ ranklist[0].skuName }}</p><span>{{ ranklist[0].count }}</span></li>
-      <li><span class="top2">{{ +ranklist[1].skuId+2 }}</span><p>{{ ranklist[1].skuName }}</p><span>{{ ranklist[1].count }}</span></li>
-      <li><span class="top3">{{ +ranklist[2].skuId+3 }}</span><p>{{ ranklist[2].skuName }}</p><span>{{ ranklist[2].count }}</span></li>
+      <li><span class="top1">1</span><p>{{ ranklist[0].skuName }}</p><span>{{ ranklist[0].count }}</span></li>
+      <li><span class="top2">2</span><p>{{ ranklist[1].skuName }}</p><span>{{ ranklist[1].count }}</span></li>
+      <li><span class="top3">3</span><p>{{ ranklist[2].skuName }}</p><span>{{ ranklist[2].count }}</span></li>
       <li v-for="(item,index) in footlist" :key="index"><span class="rank">{{ index+4 }}</span><p>{{ item.skuName == '泡面1' ? '泡面' : item.skuName}}</p><span class="count">{{ item.count }}</span></li>
      </ul>
     </div>
@@ -43,7 +43,6 @@ export default {
       const res = await rankApi();
       this.ranklist = res.data;
       this.footlist = this.ranklist.splice(3, 11)
-      console.log(this.footlist);
     }
   },
   components: {

@@ -7,27 +7,38 @@
 </template>
 
 <script>
-import { lineApi } from '@/api/echarts'
+
 export default {
-  name: 'WLineEcharts',
+  name: 'LineEcharts',
   props: {
+    lineseries: {
+      type: Array
+    },
+    linexAxis: {
+      type: Array
+    },
+    interval: {
+      type: Number
+    },
+    label: {
+      type: String
+    }
   },
   data () {
     return {
-      series: JSON.parse(localStorage.getItem('series')),
-      xAxis: JSON.parse(localStorage.getItem('xAxis'))
     }
   },
   created () {
-    this.$nextTick(() => { this.getsalelist(1, '2023-03-06', '2023-03-11') })
+    this.$nextTick(this.$forceUpdate())
   },
   methods: {
     myEcharts () {
       const myChart = this.$echarts.init(this.$refs.linemain);
+
       // 配置图表
       const option = {
         title: {
-          text: '销售额趋势图',
+          text: `销售额趋势图 / ${this.label}`,
         },
         tooltip: {
           trigger: 'item',
@@ -36,9 +47,9 @@ export default {
         color: ['#ff5757'],
         xAxis: {
           type: 'category',
-          data: this.xAxis,
+          data: this.linexAxis,
           axisLabel: {
-            interval: 0,
+            interval: this.label === '月' ? 1 : 0,
             fontSize: 10
           },
           axisTick: {
@@ -55,7 +66,7 @@ export default {
         },
         series: [
           {
-            data: this.series,
+            data: this.lineseries,
             type: 'line',
             smooth: true,
             areaStyle: {
@@ -81,19 +92,19 @@ export default {
       };
       myChart.setOption(option);
     },
-    async getsalelist (id, start, end) {
-      const res = await lineApi(id, start, end)
-      // console.log(res.data.xAxis);
-      // console.log(res.data.series);
-      localStorage.setItem('series', JSON.stringify(res.data.series));
-      localStorage.setItem('xAxis', JSON.stringify(res.data.xAxis))
-      this.text = '2023.03.06~2023.03.11'
-      this.$forceUpdate()
-    }
+
   },
   mounted () {
     this.myEcharts();
   },
+  watch: {
+    lineseries () {
+      this.myEcharts()
+    },
+    linexAxis () {
+      this.myEcharts()
+    }
+  }
 
 }
 </script>

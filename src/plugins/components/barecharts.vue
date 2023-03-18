@@ -6,17 +6,26 @@
 </template>
 
 <script>
-import { barApi } from '@/api/echarts'
+
 export default {
-  name: 'WBarEcharts',
+  name: 'BarEcharts',
+  props: {
+    barseries: {
+      type: Array
+    },
+    barxAxis: {
+      type: Array
+    },
+    label: {
+      type: String
+    }
+  },
   data () {
     return {
-      series: JSON.parse(localStorage.getItem('wbxAxis')),
-      xAxis: JSON.parse(localStorage.getItem('wbseries')),
     }
   },
   created () {
-    this.$nextTick(() => { this.getsalelist('2023-03-06', '2023-03-12') })
+    this.$nextTick(this.$forceUpdate())
   },
   methods: {
     myEcharts () {
@@ -24,14 +33,14 @@ export default {
       // 配置图表
       const option = {
         title: {
-          text: '销售额分布图',
+          text: `销售额分布图 / ${this.label}`,
         },
         tooltip: {
           trigger: 'item',
           formatter: '{b} : {c}元'
         },
         xAxis: {
-          data: this.series,
+          data: this.barxAxis,
         },
         grid: {
           left: "3%",
@@ -42,21 +51,23 @@ export default {
         series: [{
           name: '销量',
           type: 'bar',
-          data: this.xAxis,
+          data: this.barseries,
           barWidth: 20,
         }]
       };
       myChart.setOption(option);
     },
-    async getsalelist (start, end) {
-      const res = await barApi(start, end)
-      localStorage.setItem('wbxAxis', JSON.stringify(res.data.xAxis))
-      localStorage.setItem('wbseries', JSON.stringify(res.data.series))
-      this.$forceUpdate()
-    }
   },
   mounted () {
     this.myEcharts();
+  },
+  watch: {
+    barseries () {
+      this.myEcharts()
+    },
+    barxAxis () {
+      this.myEcharts()
+    }
   }
 }
 </script>

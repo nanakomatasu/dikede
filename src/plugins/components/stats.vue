@@ -36,7 +36,6 @@ export default {
   methods: {
     async getnum () {
       const res = await statsApi()
-      console.log(res.data);
       this.all = res.data.reduce((total, item) => {
         return total + item.total
       }, 0)

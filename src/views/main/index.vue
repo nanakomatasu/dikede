@@ -21,19 +21,14 @@
         <div class="t-title">
           <p>销售数据<span>{{text}}</span></p>
           <div class="btnchange">
-            <button @click="() => {
-              this.showComp='WeekCh',this.text='2023.03.06 ~ 2023.03.12'
-            }">按周</button>
-            <button @click="()=>{
-              this.showComp='MonthCh',this.text='2023.03.01 ~ 2023.03.12'
-            }">按月</button>
-            <button @click="() => {
-              this.showComp='YearCh',this.text='2023.01.01 ~ 2023.03.12'
-            }">按年</button>
+            <button @click="getGroup(1, '2023-03-06', '2023-03-11','周')">按周</button>
+            <button @click="getGroup(1, '2023-03-01', '2023-03-11','月')">按月</button>
+            <button @click="getGroup(2, '2023-01-01', '2023-03-11','年')">按年</button>
           </div>
         </div>
         <div class="charts">
-          <component :is="showComp"/>
+          <LineEcharts :lineseries="lineseries" :linexAxis="linexAxis" :label="label"/>
+          <BarEcharts :barseries="barseries" :barxAxis="barxAxis" :label="label"/>
         </div>
 
 </el-card>
@@ -51,7 +46,7 @@
           <div class="fl-title">
             合作商点位数TOP5
           </div>
-          <CustCharts />
+          <CustEcharts/>
              <el-card class="total">
               <p>16
                 <span>点位数</span>
@@ -74,21 +69,23 @@
 </template>
 
 <script>
+import { barApi, lineApi } from '@/api/echarts';
 export default {
-  props: {
-
-  },
   data () {
     return {
-      showComp: 'WeekCh',
-      text: '2023.03.06 ~ 2023.03.12'
+      text: '2023.03.06 ~ 2023.03.12',
+      lineseries: [],
+      linexAxis: [],
+      barseries: [],
+      barxAxis: [],
+      label: '周'
     };
   },
   computed: {
 
   },
   created () {
-
+    Promise.all([this.getlinelist(1, '2023-03-06', '2023-03-11'), this.getbarlist('2023-03-06', '2023-03-11')])
   },
   mounted () {
 
@@ -97,7 +94,25 @@ export default {
 
   },
   methods: {
-
+    async getbarlist (start, end) {
+      const res = await barApi(start, end)
+      this.barseries = res.data.series.map(item => {
+        return item / 1000
+      })
+      this.barxAxis = res.data.xAxis
+    },
+    async getlinelist (id, start, end) {
+      const res = await lineApi(id, start, end)
+      this.lineseries = res.data.series.map(item => {
+        return item / 1000
+      })
+      this.linexAxis = res.data.xAxis
+    },
+    getGroup (id, start, end, date) {
+      Promise.all([this.getbarlist(start, end), this.getlinelist(id, start, end)])
+      this.text = `${start} ~ ${end}`
+      this.label = date
+    }
   },
   components: {
   },

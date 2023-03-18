@@ -8,7 +8,7 @@
 <script>
 import { barApi } from '@/api/echarts'
 export default {
-  name: 'BarEcharts',
+  name: 'WBarEcharts',
   data () {
     return {
       series: JSON.parse(localStorage.getItem('wbxAxis')),

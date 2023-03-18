@@ -13,6 +13,7 @@
 import { rankApi } from '@/api/rank';
 
 export default {
+  name: 'MyRanking',
   props: {
 
   },

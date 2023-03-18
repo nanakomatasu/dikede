@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import MyTable from '@/components/mytable.vue';
 import { businessApi } from '@/api/tablelist';
 export default {
   props: {
@@ -122,7 +121,6 @@ export default {
 
   },
   components: {
-    MyTable
   },
 };
 </script>

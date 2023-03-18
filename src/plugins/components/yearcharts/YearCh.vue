@@ -1,15 +1,13 @@
 <template>
   <div class="main">
-    <linecharts />
-   <barecharts />
+    <Ylinecharts />
+   <Ybarecharts />
   </div>
 </template>
 
 <script>
-import barecharts from './barecharts.vue'
-import linecharts from './linecharts'
 export default {
-  name: 'MonthCh',
+  name: 'YearCh',
   props: {
 
   },
@@ -34,7 +32,6 @@ export default {
 
   },
   components: {
-    barecharts, linecharts
   },
 };
 </script>

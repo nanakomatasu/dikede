@@ -7,11 +7,13 @@ import "element-ui/lib/theme-chalk/index.css";
 import VueCookies from "vue-cookies";
 import "../permission";
 import * as echarts from "echarts";
+import plugins from "./plugins";
 
 Vue.prototype.$echarts = echarts;
 
 Vue.use(ElementUI);
 Vue.use(VueCookies);
+Vue.use(plugins);
 
 Vue.config.productionTip = false;
 

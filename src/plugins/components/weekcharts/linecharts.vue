@@ -2,24 +2,24 @@
 //在Echarts.vue文件中
 <template>
   <div class="LineEcharts">
-    <div ref="linemain" style="width: 500px;height: 320px;" class="linemain"></div>
+    <div ref="linemain" style="width: 500px;height: 320px;"></div>
   </div>
 </template>
 
 <script>
 import { lineApi } from '@/api/echarts'
 export default {
-  name: 'LineEcharts',
+  name: 'WLineEcharts',
   props: {
   },
   data () {
     return {
-      series: JSON.parse(localStorage.getItem('yseries')),
-      xAxis: JSON.parse(localStorage.getItem('yxAxis'))
+      series: JSON.parse(localStorage.getItem('series')),
+      xAxis: JSON.parse(localStorage.getItem('xAxis'))
     }
   },
   created () {
-    this.$nextTick(() => { this.getsalelist(2, '2023-01-01', '2023-03-11') })
+    this.$nextTick(() => { this.getsalelist(1, '2023-03-06', '2023-03-11') })
   },
   methods: {
     myEcharts () {
@@ -85,8 +85,9 @@ export default {
       const res = await lineApi(id, start, end)
       // console.log(res.data.xAxis);
       // console.log(res.data.series);
-      localStorage.setItem('yseries', JSON.stringify(res.data.series));
-      localStorage.setItem('yxAxis', JSON.stringify(res.data.xAxis))
+      localStorage.setItem('series', JSON.stringify(res.data.series));
+      localStorage.setItem('xAxis', JSON.stringify(res.data.xAxis))
+      this.text = '2023.03.06~2023.03.11'
       this.$forceUpdate()
     }
   },

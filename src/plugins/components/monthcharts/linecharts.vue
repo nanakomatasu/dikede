@@ -9,7 +9,7 @@
 <script>
 import { lineApi } from '@/api/echarts'
 export default {
-  name: 'LineEcharts',
+  name: 'MLineEcharts',
   props: {
   },
   data () {

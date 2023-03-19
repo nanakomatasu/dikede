@@ -36,7 +36,7 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-          formatter: '{b} : {c }万元'
+          formatter: '{b} : {c}万元'
         },
         xAxis: {
           data: this.barxAxis,

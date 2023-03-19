@@ -12,7 +12,7 @@ export default {
   name: 'CustEcharts',
   props: {
     friendlist: {
-      type: []
+      type: [],
     }
   },
   data () {

@@ -82,6 +82,7 @@ export default {
             duration: 800
           });
           this.getpic()
+          this.imgcode = ''
         }console.log(res.data);
       } catch (err) {
         alert(err.data.message)

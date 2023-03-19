@@ -8,7 +8,7 @@ export const loginApi = (input, password, imgcode) => {
       loginName: input,
       password: password,
       code: imgcode,
-      clientToken: 1,
+      clientToken: "1",
       loginType: "0",
     },
   });
